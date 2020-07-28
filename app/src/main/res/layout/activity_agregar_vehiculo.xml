@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.AgregarVehiculoActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txt_agregar_vehiculos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="@string/agregar_veh"
+            android:textSize="25sp"/>
+
+        <View
+            android:id="@+id/view_agregar"
+            android:layout_width="300dp"
+            android:layout_height="1dp"
+            android:background="@color/cardview_dark_background"
+            android:layout_below="@id/txt_agregar_vehiculos"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"/>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_marca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view_agregar"
+            android:layout_marginTop="20dp"
+            android:inputType="text"
+            android:hint="@string/marca"/>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_modelo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edit_marca"
+            android:layout_marginTop="20dp"
+            android:inputType="text"
+            android:hint="@string/modelo"/>
+
+        <TextView
+            android:id="@+id/txt_estado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edit_modelo"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/estado"
+            android:textSize="18sp"/>
+        
+        <Spinner
+            android:id="@+id/selecciona_estado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edit_modelo"
+            android:layout_toEndOf="@id/txt_estado"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:spinnerMode="dialog"/>
+
+        <TextView
+            android:id="@+id/txt_favorito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_estado"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/es_favorito"
+            android:textSize="18sp"/>
+
+        <Spinner
+            android:id="@+id/selecciona_favorito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/selecciona_estado"
+            android:layout_toEndOf="@id/txt_estado"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:spinnerMode="dialog"/>
+
+        <ImageButton
+            android:id="@+id/selecciona_imagen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_favorito"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_menu_camera"/>
+
+        <ImageView
+            android:id="@+id/imagen_vehiculo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/selecciona_favorito"
+            android:layout_toEndOf="@id/selecciona_imagen"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="50dp"
+            android:src="@drawable/fotoprueba"/>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_coleccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imagen_vehiculo"
+            android:layout_marginTop="20dp"
+            android:inputType="text"
+            android:hint="@string/coleccion"/>
+
+        <TextView
+            android:id="@+id/txt_combustion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edit_coleccion"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/tipo_combustion"
+            android:textSize="18sp"/>
+
+        <Spinner
+            android:id="@+id/selecciona_combustion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edit_coleccion"
+            android:layout_toEndOf="@id/txt_combustion"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:spinnerMode="dialog"/>
+
+        <Button
+            android:id="@+id/guardar_vehiculo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_combustion"
+            android:layout_marginTop="30dp"
+            android:text="@string/agregar_vehiculo"/>
+
+    </RelativeLayout>
+
+    </ScrollView>
+
+</LinearLayout>

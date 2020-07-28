@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">PruebaJuniorAndroid</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="vehiculos_propios">Vehiculos propios</string>
+    <string name="vehiculos_disponibles">Vehiculos disponibles</string>
+    <string name="perfil">Perfil</string>
+    <string name="agregar_veh">Agregar Vehiculos</string>
+    <string name="marca">Marca</string>
+    <string name="modelo">Modelo</string>
+    <string name="estado">Estado</string>
+    <string name="es_favorito">Es favorito</string>
+    <string name="agregar_vehiculo">Agregar Vehiculo</string>
+    <string name="coleccion">Colección</string>
+    <string name="tipo_combustion">Tipo combustión</string>
+</resources>
