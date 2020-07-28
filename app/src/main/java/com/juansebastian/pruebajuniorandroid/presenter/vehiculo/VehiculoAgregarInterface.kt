@@ -7,7 +7,7 @@ import com.google.android.material.textfield.TextInputEditText
 
 interface VehiculoAgregarInterface {
 
-    fun llenarSpinner(spinnerEstado: Spinner, spinnerFavorito: Spinner)
+    fun llenarSpinner(spinnerEstado: Spinner, spinnerFavorito: Spinner, spinnerCombustion: Spinner, spinnerEliminacio: Spinner)
 
     fun guardarVehiculo(editMarca: TextInputEditText, editModelo: TextInputEditText, spinnerEstado: Spinner,
                         spinnerFavorito: Spinner)

@@ -14,19 +14,15 @@ import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.material.textfield.TextInputEditText
-import com.juansebastian.pruebajuniorandroid.model.vehiculo.Vehiculo
-import com.juansebastian.pruebajuniorandroid.model.vehiculo.VehiculoInterface
 import org.json.JSONObject
-import java.util.ArrayList
 
-class VehiculoAgregaPresenter(var context: Context, val activity: Activity): VehiculoAgregarInterface,
-        VehiculoPropioInterface {
-    private var imagenBitmap: Bitmap? = null
+class VehiculoAgregaPresenter(var context: Context, val activity: Activity): VehiculoAgregarInterface {
+
 
     override fun guardarImagen(requestCode: Int, resultCode: Int, data: Intent?, REQUEST_IMAGE_CAPTURE: Int,
                                imagenVehiculo: ImageView?) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == AppCompatActivity.RESULT_OK) {
-            imagenBitmap = data?.extras?.get("data") as Bitmap
+            val imagenBitmap = data?.extras?.get("data") as Bitmap
             imagenVehiculo?.setImageBitmap(imagenBitmap)
 
         }
@@ -44,7 +40,6 @@ class VehiculoAgregaPresenter(var context: Context, val activity: Activity): Veh
         infoJson.put("modelo", modelo)
         infoJson.put("estado", estado)
         infoJson.put("favorito", favorito)
-        infoJson.put("imagen", imagenBitmap)
 
 
         val dbVehiculo = DbVehiculo(context)
@@ -60,7 +55,8 @@ class VehiculoAgregaPresenter(var context: Context, val activity: Activity): Veh
 
     }
 
-    override fun llenarSpinner(spinnerEstado: Spinner, spinnerFavorito: Spinner) {
+    override fun llenarSpinner(spinnerEstado: Spinner, spinnerFavorito: Spinner, spinnerCombustion: Spinner,
+                        spinnerEliminacion: Spinner) {
         val datosEstado = arrayOf("Comprado", "Desactivado", "Propio", "Disponible")
         val arrayAdapterEstado: ArrayAdapter<String> = ArrayAdapter<String>(context, android.R.layout.simple_list_item_1,
                 datosEstado)
@@ -73,6 +69,18 @@ class VehiculoAgregaPresenter(var context: Context, val activity: Activity): Veh
 
         spinnerFavorito.adapter = arrayAdapterFavorito
 
+        val datosCombustion = arrayListOf("Hidrógeno", "Eléctrico", "Eléctrico Hibrido",
+                                            "Combustible flexible", "Gas natural", "Gas licuado")
+        val arrayAdapterCombustion: ArrayAdapter<String> = ArrayAdapter(context, android.R.layout.simple_list_item_1,
+                                                            datosCombustion)
+        spinnerCombustion.adapter = arrayAdapterCombustion
+
+        val datosEliminacion = arrayListOf("Si", "No")
+        val arrayAdapterEliminacion: ArrayAdapter<String> = ArrayAdapter(context, android.R.layout.simple_list_item_1,
+                datosEliminacion)
+
+        spinnerEliminacion.adapter = arrayAdapterEliminacion
+
     }
 
     override fun tomarImagen(REQUEST_IMAGE_CAPTURE: Int) {
@@ -83,14 +91,4 @@ class VehiculoAgregaPresenter(var context: Context, val activity: Activity): Veh
         }
     }
 
-
-
-
-    override fun getArrayItems(itemsAgregar: ArrayList<Vehiculo>?): ArrayList<Vehiculo>? {
-        TODO("Not yet implemented")
-    }
-
-    override fun mostrarVehiculos(listView: ListView) {
-        TODO("Not yet implemented")
-    }
 }

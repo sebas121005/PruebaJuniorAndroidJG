@@ -23,4 +23,7 @@
     <string name="agregar_vehiculo">Agregar Vehiculo</string>
     <string name="coleccion">Colección</string>
     <string name="tipo_combustion">Tipo combustión</string>
+    <string name="ubicacion">Ubicación</string>
+    <string name="eliminar_mi_vehiculo">¿Eliminar mi vehículo?</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

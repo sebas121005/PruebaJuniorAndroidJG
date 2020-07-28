@@ -3,10 +3,7 @@ package com.juansebastian.pruebajuniorandroid.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.Spinner
+import android.widget.*
 import com.google.android.material.textfield.TextInputEditText
 import com.juansebastian.pruebajuniorandroid.R
 import com.juansebastian.pruebajuniorandroid.presenter.vehiculo.VehiculoAgregaPresenter
@@ -25,20 +22,28 @@ class AgregarVehiculoActivity : AppCompatActivity(), AgregarVehiculoActivityInte
         val spinnerEstado: Spinner = findViewById<Spinner>(R.id.selecciona_estado)
         val spinnerFavorito: Spinner = findViewById<Spinner>(R.id.selecciona_favorito)
         val agregarVehiculo: Button = findViewById(R.id.guardar_vehiculo)
-        val selecciona_imagen: ImageButton = findViewById(R.id.selecciona_imagen)
+        val seleccionaImagen: ImageButton = findViewById(R.id.selecciona_imagen)
+        val editColeccion: TextInputEditText = findViewById(R.id.edit_coleccion)
+        val spinnerCombustion: Spinner = findViewById(R.id.selecciona_combustion)
+        val tomarUbicacion: ImageButton = findViewById(R.id.tomar_ubicacion)
+        val coordenada: TextView = findViewById(R.id.coordenada)
+        val spinnerEliminacion: Spinner = findViewById(R.id.selecciona_eliminacion)
         imagenVehiculo = findViewById(R.id.imagen_vehiculo)
 
         vehiculoAgregarPresenter = VehiculoAgregaPresenter(applicationContext, this)
 
-        llenarSpinner(spinnerEstado, spinnerFavorito)
+        llenarSpinner(spinnerEstado, spinnerFavorito, spinnerCombustion, spinnerEliminacion)
 
         agregarVehiculo.setOnClickListener { guardarVehiculo(editMarca, editModelo, spinnerEstado, spinnerFavorito)  }
-        selecciona_imagen.setOnClickListener { tomarImagen(REQUEST_IMAGE_CAPTURE) }
+        seleccionaImagen.setOnClickListener { tomarImagen(REQUEST_IMAGE_CAPTURE) }
+        tomarUbicacion.setOnClickListener { val intent: Intent = Intent(this, MapsActivity::class.java)
+                                            startActivity(intent)}
 
     }
 
-    override fun llenarSpinner(spinnerEstado: Spinner, spinnerFavorito: Spinner) {
-        vehiculoAgregarPresenter!!.llenarSpinner(spinnerEstado, spinnerFavorito)
+    override fun llenarSpinner(spinnerEstado: Spinner, spinnerFavorito: Spinner, spinnerCombustion: Spinner,
+                               spinnerEliminacion: Spinner) {
+        vehiculoAgregarPresenter!!.llenarSpinner(spinnerEstado, spinnerFavorito, spinnerCombustion, spinnerEliminacion)
     }
 
     override fun guardarVehiculo(editMarca: TextInputEditText, editModelo: TextInputEditText, spinnerEstado: Spinner,
