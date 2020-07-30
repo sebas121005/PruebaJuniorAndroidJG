@@ -1,6 +1,8 @@
 package com.juansebastian.pruebajuniorandroid.view
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
@@ -13,6 +15,7 @@ class AgregarVehiculoActivity : AppCompatActivity(), AgregarVehiculoActivityInte
     private var vehiculoAgregarPresenter: VehiculoAgregaPresenter? = null
     val REQUEST_IMAGE_CAPTURE = 1
     var imagenVehiculo: ImageView? = null
+    private var preferencias: SharedPreferences? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,12 +32,14 @@ class AgregarVehiculoActivity : AppCompatActivity(), AgregarVehiculoActivityInte
         val coordenada: TextView = findViewById(R.id.coordenada)
         val spinnerEliminacion: Spinner = findViewById(R.id.selecciona_eliminacion)
         imagenVehiculo = findViewById(R.id.imagen_vehiculo)
+        preferencias = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE)
 
         vehiculoAgregarPresenter = VehiculoAgregaPresenter(applicationContext, this)
 
         llenarSpinner(spinnerEstado, spinnerFavorito, spinnerCombustion, spinnerEliminacion)
 
-        agregarVehiculo.setOnClickListener { guardarVehiculo(editMarca, editModelo, spinnerEstado, spinnerFavorito)  }
+        agregarVehiculo.setOnClickListener { guardarVehiculo(editMarca, editModelo, spinnerEstado, spinnerFavorito, editColeccion,
+                                                                spinnerCombustion, spinnerEliminacion, preferencias!!)  }
         seleccionaImagen.setOnClickListener { tomarImagen(REQUEST_IMAGE_CAPTURE) }
         tomarUbicacion.setOnClickListener { val intent: Intent = Intent(this, MapsActivity::class.java)
                                             startActivity(intent)}
@@ -47,8 +52,10 @@ class AgregarVehiculoActivity : AppCompatActivity(), AgregarVehiculoActivityInte
     }
 
     override fun guardarVehiculo(editMarca: TextInputEditText, editModelo: TextInputEditText, spinnerEstado: Spinner,
-                                 spinnerFavorito: Spinner) {
-        vehiculoAgregarPresenter!!.guardarVehiculo(editMarca, editModelo, spinnerEstado, spinnerFavorito)
+                                 spinnerFavorito: Spinner, editColeccion: TextInputEditText, spinnerCombustion: Spinner,
+                                 spinnerEliminacion: Spinner, preferencias: SharedPreferences) {
+        vehiculoAgregarPresenter!!.guardarVehiculo(editMarca, editModelo, spinnerEstado, spinnerFavorito, editColeccion,
+                                                    spinnerCombustion, spinnerEliminacion, preferencias)
     }
 
     override fun tomarImagen(REQUEST_IMAGE_CAPTURE: Int) {

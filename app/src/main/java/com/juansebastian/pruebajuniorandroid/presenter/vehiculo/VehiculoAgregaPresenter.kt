@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.provider.MediaStore
 import android.util.Log
@@ -14,6 +15,7 @@ import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.material.textfield.TextInputEditText
+import com.juansebastian.pruebajuniorandroid.view.vehiculo.VehiculoPropioFragment
 import org.json.JSONObject
 
 class VehiculoAgregaPresenter(var context: Context, val activity: Activity): VehiculoAgregarInterface {
@@ -29,17 +31,26 @@ class VehiculoAgregaPresenter(var context: Context, val activity: Activity): Veh
     }
 
     override fun guardarVehiculo(editMarca: TextInputEditText, editModelo: TextInputEditText, spinnerEstado: Spinner,
-                        spinnerFavorito: Spinner) {
+                        spinnerFavorito: Spinner, editColeccion: TextInputEditText, spinnerCombustion: Spinner,
+                                 spinnerEliminacion: Spinner, preferencias: SharedPreferences) {
         val marca = editMarca.text
         val modelo = editModelo.text
         val estado = spinnerEstado.selectedItem
         val favorito = spinnerFavorito.selectedItem
+        val coleccion = editColeccion.text
+        val combustion = spinnerCombustion.selectedItem
+        val eliminacion = spinnerEliminacion.selectedItem
+        val ubicacion = preferencias.getString("ubicacion", "")
 
         val infoJson = JSONObject()
         infoJson.put("marca", marca)
         infoJson.put("modelo", modelo)
         infoJson.put("estado", estado)
         infoJson.put("favorito", favorito)
+        infoJson.put("coleccion", coleccion)
+        infoJson.put("combustion", combustion)
+        infoJson.put("eliminacion", eliminacion)
+        infoJson.put("ubicacion", ubicacion)
 
 
         val dbVehiculo = DbVehiculo(context)
@@ -52,6 +63,9 @@ class VehiculoAgregaPresenter(var context: Context, val activity: Activity): Veh
         }
 
         val nuevaFila = db?.insert("VEHICULO", null, values)
+
+        val intent: Intent = Intent(activity, VehiculoPropioFragment::class.java)
+        activity.startActivity(intent)
 
     }
 

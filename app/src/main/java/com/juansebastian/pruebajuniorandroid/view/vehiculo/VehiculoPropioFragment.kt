@@ -46,7 +46,7 @@ class VehiculoPropioFragment : Fragment(), VehiculoPropioFragmentInterface {
         val view: View = inflater.inflate(R.layout.fragment_vehiculo_propio, container, false)
         val listaVehiculos = view.findViewById(R.id.lista_vehiculos_propios) as ListView
         val agregarVehiculo: FloatingActionButton = view.findViewById(R.id.agregar_vehiculo)
-        vehiculoPropioPresenter = VehiculoPropioPresenter(requireContext())
+        vehiculoPropioPresenter = VehiculoPropioPresenter(requireContext(), activity!!)
 
         agregarVehiculo.setOnClickListener(View.OnClickListener {
             val intent: Intent = Intent(activity, AgregarVehiculoActivity::class.java)

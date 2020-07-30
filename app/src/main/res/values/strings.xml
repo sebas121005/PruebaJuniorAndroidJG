@@ -16,14 +16,16 @@
     <string name="vehiculos_disponibles">Vehiculos disponibles</string>
     <string name="perfil">Perfil</string>
     <string name="agregar_veh">Agregar Vehiculos</string>
-    <string name="marca">Marca</string>
-    <string name="modelo">Modelo</string>
+    <string name="marca">Marca:</string>
+    <string name="modelo">Modelo:</string>
     <string name="estado">Estado</string>
-    <string name="es_favorito">Es favorito</string>
+    <string name="es_favorito">Es favorito:</string>
     <string name="agregar_vehiculo">Agregar Vehiculo</string>
     <string name="coleccion">Colección</string>
-    <string name="tipo_combustion">Tipo combustión</string>
-    <string name="ubicacion">Ubicación</string>
+    <string name="tipo_combustion">Tipo combustión:</string>
+    <string name="ubicacion">Ubicación:</string>
     <string name="eliminar_mi_vehiculo">¿Eliminar mi vehículo?</string>
     <string name="title_activity_maps">Map</string>
+    <string name="detalle_vehiculo">Detalle Vehículo</string>
+    <string name="combustion">Combustión:</string>
 </resources>

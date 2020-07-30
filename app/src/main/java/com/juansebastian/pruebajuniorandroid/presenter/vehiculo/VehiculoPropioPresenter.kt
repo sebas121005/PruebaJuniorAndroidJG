@@ -1,5 +1,6 @@
 package com.juansebastian.pruebajuniorandroid.presenter.vehiculo
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
@@ -15,14 +16,16 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.startActivityForResult
+import androidx.fragment.app.FragmentActivity
 import com.juansebastian.pruebajuniorandroid.R
 import com.juansebastian.pruebajuniorandroid.model.vehiculo.AdapterVehiculo
 import com.juansebastian.pruebajuniorandroid.model.vehiculo.Vehiculo
 import com.juansebastian.pruebajuniorandroid.model.vehiculo.VehiculoInterface
+import com.juansebastian.pruebajuniorandroid.view.DetalleVehiculoPropioActivity
 import org.json.JSONObject
 import java.util.ArrayList
 
-class VehiculoPropioPresenter(var context: Context): VehiculoPropioInterface {
+class VehiculoPropioPresenter(var context: Context, val activity: FragmentActivity): VehiculoPropioInterface {
     private val vehiculoInterface: VehiculoInterface = Vehiculo(this)
     private var adapterVehiculo: AdapterVehiculo? = null
 
@@ -54,6 +57,7 @@ class VehiculoPropioPresenter(var context: Context): VehiculoPropioInterface {
             with(cursor) {
                 while (moveToNext()) {
                     dataJson = JSONObject(cursor.getString(2))
+                    Log.e("DATA", dataJson.toString())
 
                     if (dataJson!!.getString("favorito").equals("Si")) {
                         items.add(Vehiculo(dataJson!!.getString("marca"), dataJson!!.getString("modelo"),
@@ -83,6 +87,8 @@ class VehiculoPropioPresenter(var context: Context): VehiculoPropioInterface {
            val vehiculo: Vehiculo = adapterVehiculo.getItem(i)
 
            Log.e("DATA", "Modelo: ${vehiculo.getModelo()}, Marca: ${vehiculo.getMarca()}")
+           val intent: Intent = Intent(activity, DetalleVehiculoPropioActivity::class.java)
+           activity.startActivity(intent)
        })
    }
 

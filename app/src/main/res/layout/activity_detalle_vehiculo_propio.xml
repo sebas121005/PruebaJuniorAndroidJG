@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.DetalleVehiculoPropioActivity"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txt_detalle_vehiculos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:text="@string/detalle_vehiculo"
+                android:textSize="25sp"/>
+
+            <View
+                android:id="@+id/view_detalle"
+                android:layout_width="300dp"
+                android:layout_height="1dp"
+                android:background="@color/cardview_dark_background"
+                android:layout_below="@id/txt_detalle_vehiculos"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:id="@+id/txt_marca_detalle_propio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/view_detalle"
+                android:layout_marginTop="20dp"
+                android:text="@string/marca"
+                android:textSize="18sp"
+                android:layout_marginStart="20dp"/>
+
+            <TextView
+                android:id="@+id/marca_propio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/view_detalle"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@id/txt_marca_detalle_propio"
+                android:layout_marginStart="10dp"
+                android:text="NIssan"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/txt_modelo_detalle_propio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/view_detalle"
+                android:layout_toEndOf="@id/marca_propio"
+                android:layout_marginTop="20dp"
+                android:text="@string/modelo"
+                android:textSize="18sp"
+                android:layout_marginStart="50dp"/>
+
+            <TextView
+                android:id="@+id/modelo_propio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/view_detalle"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@id/txt_modelo_detalle_propio"
+                android:layout_marginStart="10dp"
+                android:text="NIssan"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/txt_favorito_detalle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_modelo_detalle_propio"
+                android:layout_toEndOf="@id/marca_propio"
+                android:layout_marginTop="20dp"
+                android:text="@string/es_favorito"
+                android:textSize="18sp"
+                android:layout_marginStart="50dp"/>
+
+            <TextView
+                android:id="@+id/favorito_detalle_propio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_modelo_detalle_propio"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@id/txt_favorito_detalle"
+                android:layout_marginStart="10dp"
+                android:text="Si"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/txt_estado_detalle_propio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_marca_detalle_propio"
+                android:layout_marginTop="20dp"
+                android:text="@string/estado"
+                android:textSize="18sp"
+                android:layout_marginStart="20dp"/>
+
+            <TextView
+                android:id="@+id/estado_propio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_marca_detalle_propio"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@id/txt_marca_detalle_propio"
+                android:layout_marginStart="10dp"
+                android:text="Desactivado"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/txt_coleccion_detalle_propio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_estado_detalle_propio"
+                android:layout_marginTop="20dp"
+                android:text="@string/coleccion"
+                android:textSize="18sp"
+                android:layout_marginStart="20dp"/>
+
+            <TextView
+                android:id="@+id/coleccion_propio_detalle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_estado_detalle_propio"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@id/txt_coleccion_detalle_propio"
+                android:layout_marginStart="10dp"
+                android:text="Verano"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/txt_combustion_detalle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_favorito_detalle"
+                android:layout_toEndOf="@id/marca_propio"
+                android:layout_marginTop="20dp"
+                android:text="@string/combustion"
+                android:textSize="18sp"
+                android:layout_marginStart="50dp"/>
+
+            <TextView
+                android:id="@+id/combustion_detalle_propio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_favorito_detalle"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@id/txt_combustion_detalle"
+                android:layout_marginStart="10dp"
+                android:text="Combustible flexible"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/txt_ubicacion_detalle_propio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_coleccion_detalle_propio"
+                android:layout_marginTop="20dp"
+                android:text="@string/ubicacion"
+                android:textSize="18sp"
+                android:layout_marginStart="20dp"/>
+
+            <TextView
+                android:id="@+id/ubicacion_propio_detalle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_coleccion_detalle_propio"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@id/txt_coleccion_detalle_propio"
+                android:layout_marginStart="10dp"
+                android:text="4.810505,-75.7112924"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/eliminacion_propio_detalle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_ubicacion_detalle_propio"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
+                android:text="Su veículo se encuentra en proceso de eliminación"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_centerHorizontal="true"/>
+
+            <ImageView
+                android:id="@+id/imagen_vehiculo_propio"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_below="@id/eliminacion_propio_detalle"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="50dp"
+                android:src="@drawable/fotoprueba"/>
+
+
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</LinearLayout>
