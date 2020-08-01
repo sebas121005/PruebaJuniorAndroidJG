@@ -3,20 +3,19 @@ package com.juansebastian.pruebajuniorandroid.presenter.vehiculo
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.database.sqlite.SQLiteDatabase
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.provider.MediaStore
 import android.util.Base64
 import android.util.Log
-import android.widget.AdapterView
-import android.widget.ImageView
-import android.widget.ListView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.fragment.app.FragmentActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.juansebastian.pruebajuniorandroid.R
 import com.juansebastian.pruebajuniorandroid.model.vehiculo.AdapterVehiculo
 import com.juansebastian.pruebajuniorandroid.model.vehiculo.Vehiculo
@@ -25,12 +24,12 @@ import com.juansebastian.pruebajuniorandroid.view.DetalleVehiculoPropioActivity
 import org.json.JSONObject
 import java.util.ArrayList
 
-class VehiculoPropioPresenter(var context: Context, val activity: FragmentActivity): VehiculoPropioInterface {
+class VehiculoPropioPresenter(val context: Context, val activity: FragmentActivity): VehiculoPropioInterface {
     private val vehiculoInterface: VehiculoInterface = Vehiculo(this)
     private var adapterVehiculo: AdapterVehiculo? = null
 
 
-    override fun mostrarVehiculos(listView: ListView) {
+    override fun mostrarVehiculos(listView: ListView, agregarVehiculo: FloatingActionButton) {
         val dbVehiculo = DbVehiculo(context)
         val db = dbVehiculo.readableDatabase
         val projection = arrayOf("rowid", DbVehiculo.FeedEntry.COLUMN_NAME_USUARIO, DbVehiculo.FeedEntry.COLUMN_NAME_DATA)
@@ -57,14 +56,22 @@ class VehiculoPropioPresenter(var context: Context, val activity: FragmentActivi
             with(cursor) {
                 while (moveToNext()) {
                     dataJson = JSONObject(cursor.getString(2))
-                    Log.e("DATA", dataJson.toString())
 
-                    if (dataJson!!.getString("favorito").equals("Si")) {
-                        items.add(Vehiculo(dataJson!!.getString("marca"), dataJson!!.getString("modelo"),
-                                null, context.getDrawable(R.drawable.estrella)))
-                    } else {
-                        items.add(Vehiculo(dataJson!!.getString("marca"), dataJson!!.getString("modelo"),
-                                null, null))
+                        if (dataJson!!.getString("favorito").equals("Si")) {
+                            items.add(Vehiculo(dataJson!!.getString("marca"), dataJson!!.getString("modelo"),
+                                    null, context.getDrawable(R.drawable.estrella), dataJson!!.getString("eliminacion"),
+                                    dataJson!!.getString("estado"), dataJson!!.getString("ubicacion"),
+                                    dataJson!!.getString("coleccion"), dataJson!!.getString("combustion")))
+                        } else {
+                            items.add(Vehiculo(dataJson!!.getString("marca"), dataJson!!.getString("modelo"),
+                                    null, null, dataJson!!.getString("eliminacion"),
+                                    dataJson!!.getString("estado"), dataJson!!.getString("ubicacion"),
+                                    dataJson!!.getString("coleccion"), dataJson!!.getString("combustion")))
+                        }
+
+                    if (cursor.getString(0).equals("3")) {
+                        agregarVehiculo.hide()
+                        Toast.makeText(context, "Ha llegado al límite de sus vehículos", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -83,12 +90,24 @@ class VehiculoPropioPresenter(var context: Context, val activity: FragmentActivi
     }
 
    fun mostrarDetalle(listView: ListView, adapterVehiculo: AdapterVehiculo) {
+       val preferencias: SharedPreferences = context.getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE)
        listView.setOnItemClickListener(AdapterView.OnItemClickListener { adapterView, view, i, l ->
            val vehiculo: Vehiculo = adapterVehiculo.getItem(i)
 
-           Log.e("DATA", "Modelo: ${vehiculo.getModelo()}, Marca: ${vehiculo.getMarca()}")
+           val editor: SharedPreferences.Editor = preferencias.edit()
+           editor.putString("marca_propio", vehiculo.getMarca())
+           editor.putString("modelo_propio", vehiculo.getModelo())
+           editor.putString("favorito_propio", vehiculo.getFavorito().toString())
+           editor.putString("estado_propio", vehiculo.getEstado())
+           editor.putString("coleccion_propio", vehiculo.getColeccion())
+           editor.putString("combustion_propio", vehiculo.getCombustion())
+           editor.putString("ubicacion_propio", vehiculo.getUbicacion())
+           editor.putString("eliminacion_propio", vehiculo.getSolicitud())
+           editor.commit()
+
            val intent: Intent = Intent(activity, DetalleVehiculoPropioActivity::class.java)
            activity.startActivity(intent)
+
        })
    }
 

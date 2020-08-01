@@ -38,8 +38,13 @@ class AgregarVehiculoActivity : AppCompatActivity(), AgregarVehiculoActivityInte
 
         llenarSpinner(spinnerEstado, spinnerFavorito, spinnerCombustion, spinnerEliminacion)
 
-        agregarVehiculo.setOnClickListener { guardarVehiculo(editMarca, editModelo, spinnerEstado, spinnerFavorito, editColeccion,
-                                                                spinnerCombustion, spinnerEliminacion, preferencias!!)  }
+        agregarVehiculo.setOnClickListener {
+            guardarVehiculo(editMarca, editModelo, spinnerEstado, spinnerFavorito, editColeccion,
+                                                                spinnerCombustion, spinnerEliminacion, preferencias!!)
+            validarCampos(editMarca, editModelo, editColeccion)
+
+            finish()
+        }
         seleccionaImagen.setOnClickListener { tomarImagen(REQUEST_IMAGE_CAPTURE) }
         tomarUbicacion.setOnClickListener { val intent: Intent = Intent(this, MapsActivity::class.java)
                                             startActivity(intent)}
@@ -47,8 +52,8 @@ class AgregarVehiculoActivity : AppCompatActivity(), AgregarVehiculoActivityInte
     }
 
     override fun llenarSpinner(spinnerEstado: Spinner, spinnerFavorito: Spinner, spinnerCombustion: Spinner,
-                               spinnerEliminacion: Spinner) {
-        vehiculoAgregarPresenter!!.llenarSpinner(spinnerEstado, spinnerFavorito, spinnerCombustion, spinnerEliminacion)
+                               spinnerSolicitud: Spinner) {
+        vehiculoAgregarPresenter!!.llenarSpinner(spinnerEstado, spinnerFavorito, spinnerCombustion, spinnerSolicitud)
     }
 
     override fun guardarVehiculo(editMarca: TextInputEditText, editModelo: TextInputEditText, spinnerEstado: Spinner,
@@ -66,6 +71,12 @@ class AgregarVehiculoActivity : AppCompatActivity(), AgregarVehiculoActivityInte
         super.onActivityResult(requestCode, resultCode, data)
         vehiculoAgregarPresenter?.guardarImagen(requestCode, resultCode, data, REQUEST_IMAGE_CAPTURE, imagenVehiculo)
 
+    }
+
+    override fun validarCampos(editMarca: TextInputEditText, editModelo: TextInputEditText, editColeccion: TextInputEditText) {
+        if (editMarca.text!!.equals("") || editModelo.text!!.equals("") || editColeccion.text!!.equals("")) {
+            Toast.makeText(applicationContext, "Por favor diligencie todos los campos", Toast.LENGTH_SHORT).show()
+        }
     }
 
 }

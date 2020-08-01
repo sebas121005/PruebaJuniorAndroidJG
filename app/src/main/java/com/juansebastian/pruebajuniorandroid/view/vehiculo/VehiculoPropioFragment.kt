@@ -7,9 +7,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.ListView
 import androidx.core.app.ActivityCompat
+import androidx.core.app.SharedElementCallback
+import androidx.core.view.isVisible
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.juansebastian.pruebajuniorandroid.R
 import com.juansebastian.pruebajuniorandroid.presenter.vehiculo.VehiculoPropioPresenter
@@ -46,13 +49,14 @@ class VehiculoPropioFragment : Fragment(), VehiculoPropioFragmentInterface {
         val view: View = inflater.inflate(R.layout.fragment_vehiculo_propio, container, false)
         val listaVehiculos = view.findViewById(R.id.lista_vehiculos_propios) as ListView
         val agregarVehiculo: FloatingActionButton = view.findViewById(R.id.agregar_vehiculo)
-        vehiculoPropioPresenter = VehiculoPropioPresenter(requireContext(), activity!!)
+        vehiculoPropioPresenter = VehiculoPropioPresenter(requireContext(), requireActivity())
+
 
         agregarVehiculo.setOnClickListener(View.OnClickListener {
             val intent: Intent = Intent(activity, AgregarVehiculoActivity::class.java)
             activity?.startActivity(intent)})
 
-        mostrarVehiculos(listaVehiculos)
+        mostrarVehiculos(listaVehiculos, agregarVehiculo)
 
 
         return view
@@ -80,8 +84,9 @@ class VehiculoPropioFragment : Fragment(), VehiculoPropioFragmentInterface {
                 }
     }
 
-    override fun mostrarVehiculos(listView: ListView) {
-        vehiculoPropioPresenter!!.mostrarVehiculos(listView)
+    override fun mostrarVehiculos(listView: ListView, agregarVehiculo: FloatingActionButton) {
+        vehiculoPropioPresenter!!.mostrarVehiculos(listView, agregarVehiculo)
     }
+
 
 }

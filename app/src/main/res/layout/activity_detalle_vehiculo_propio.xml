@@ -51,7 +51,6 @@
                 android:layout_marginTop="20dp"
                 android:layout_toEndOf="@id/txt_marca_detalle_propio"
                 android:layout_marginStart="10dp"
-                android:text="NIssan"
                 android:textStyle="bold"
                 android:textSize="18sp"/>
 
@@ -74,7 +73,6 @@
                 android:layout_marginTop="20dp"
                 android:layout_toEndOf="@id/txt_modelo_detalle_propio"
                 android:layout_marginStart="10dp"
-                android:text="NIssan"
                 android:textStyle="bold"
                 android:textSize="18sp"/>
 
@@ -97,7 +95,6 @@
                 android:layout_marginTop="20dp"
                 android:layout_toEndOf="@id/txt_favorito_detalle"
                 android:layout_marginStart="10dp"
-                android:text="Si"
                 android:textStyle="bold"
                 android:textSize="18sp"/>
 
@@ -119,7 +116,6 @@
                 android:layout_marginTop="20dp"
                 android:layout_toEndOf="@id/txt_marca_detalle_propio"
                 android:layout_marginStart="10dp"
-                android:text="Desactivado"
                 android:textStyle="bold"
                 android:textSize="18sp"/>
 
@@ -141,7 +137,6 @@
                 android:layout_marginTop="20dp"
                 android:layout_toEndOf="@id/txt_coleccion_detalle_propio"
                 android:layout_marginStart="10dp"
-                android:text="Verano"
                 android:textStyle="bold"
                 android:textSize="18sp"/>
 
@@ -149,22 +144,20 @@
                 android:id="@+id/txt_combustion_detalle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/txt_favorito_detalle"
-                android:layout_toEndOf="@id/marca_propio"
+                android:layout_below="@id/txt_coleccion_detalle_propio"
                 android:layout_marginTop="20dp"
                 android:text="@string/combustion"
                 android:textSize="18sp"
-                android:layout_marginStart="50dp"/>
+                android:layout_marginStart="20dp"/>
 
             <TextView
                 android:id="@+id/combustion_detalle_propio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/txt_favorito_detalle"
+                android:layout_below="@id/txt_coleccion_detalle_propio"
                 android:layout_marginTop="20dp"
                 android:layout_toEndOf="@id/txt_combustion_detalle"
                 android:layout_marginStart="10dp"
-                android:text="Combustible flexible"
                 android:textStyle="bold"
                 android:textSize="18sp"/>
 
@@ -172,7 +165,7 @@
                 android:id="@+id/txt_ubicacion_detalle_propio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/txt_coleccion_detalle_propio"
+                android:layout_below="@id/txt_combustion_detalle"
                 android:layout_marginTop="20dp"
                 android:text="@string/ubicacion"
                 android:textSize="18sp"
@@ -182,11 +175,10 @@
                 android:id="@+id/ubicacion_propio_detalle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/txt_coleccion_detalle_propio"
+                android:layout_below="@id/txt_combustion_detalle"
                 android:layout_marginTop="20dp"
                 android:layout_toEndOf="@id/txt_coleccion_detalle_propio"
                 android:layout_marginStart="10dp"
-                android:text="4.810505,-75.7112924"
                 android:textStyle="bold"
                 android:textSize="18sp"/>
 
@@ -197,7 +189,6 @@
                 android:layout_below="@id/txt_ubicacion_detalle_propio"
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="10dp"
-                android:text="Su veículo se encuentra en proceso de eliminación"
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:layout_centerHorizontal="true"/>
@@ -211,8 +202,6 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="50dp"
                 android:src="@drawable/fotoprueba"/>
-
-
 
 
         </RelativeLayout>

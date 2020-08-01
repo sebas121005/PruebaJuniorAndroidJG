@@ -19,11 +19,18 @@ class Vehiculo: VehiculoInterface {
     private var vehiculoPropioPresenterInterface: VehiculoPropioInterface? = null
     private var vehiculoDisponiblePresenterInterface: VehiculoDisponibleInterface? = null
 
-    constructor(marca: String, modelo: String, imagen: Bitmap?, favorito: Drawable?) {
+    constructor(marca: String, modelo: String, imagen: Bitmap?, favorito: Drawable?, solicitud: String?,
+                estado: String?, ubicacion: String?, coleccion: String?, tipoCombustion: String?) {
         this.marca = marca
         this.modelo = modelo
         this.favorito = favorito
         this.imagen = imagen
+        this.solictudEliminacion = solicitud
+        this.estado = estado
+        this.ubicacion = ubicacion
+        this.coleccion = coleccion
+        this.tipoCombustion = tipoCombustion
+
     }
 
     constructor(presenterInterface: VehiculoPropioInterface) {

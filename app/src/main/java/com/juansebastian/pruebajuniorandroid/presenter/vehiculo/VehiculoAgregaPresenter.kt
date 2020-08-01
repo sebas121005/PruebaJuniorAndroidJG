@@ -15,6 +15,7 @@ import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.material.textfield.TextInputEditText
+import com.juansebastian.pruebajuniorandroid.MainActivity
 import com.juansebastian.pruebajuniorandroid.view.vehiculo.VehiculoPropioFragment
 import org.json.JSONObject
 
@@ -64,7 +65,7 @@ class VehiculoAgregaPresenter(var context: Context, val activity: Activity): Veh
 
         val nuevaFila = db?.insert("VEHICULO", null, values)
 
-        val intent: Intent = Intent(activity, VehiculoPropioFragment::class.java)
+        val intent: Intent = Intent(activity, MainActivity::class.java)
         activity.startActivity(intent)
 
     }

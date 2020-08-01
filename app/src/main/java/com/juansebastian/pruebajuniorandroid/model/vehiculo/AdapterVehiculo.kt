@@ -9,6 +9,7 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.juansebastian.pruebajuniorandroid.R
 import com.juansebastian.pruebajuniorandroid.presenter.vehiculo.VehiculoPropioInterface
 import java.util.ArrayList
@@ -52,7 +53,7 @@ class AdapterVehiculo(private val context: Context, private val items: ArrayList
         TODO("Not yet implemented")
     }
 
-    override fun mostrarVehiculos(listView: ListView) {
+    override fun mostrarVehiculos(listView: ListView, agregarVehiculo: FloatingActionButton) {
         TODO("Not yet implemented")
     }
 }

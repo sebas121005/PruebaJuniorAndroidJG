@@ -13,4 +13,6 @@ interface AgregarVehiculoActivityInterface {
                         spinnerEliminacion: Spinner, preferencias: SharedPreferences)
 
     fun tomarImagen(REQUEST_IMAGE_CAPTURE: Int)
+
+    fun validarCampos(editMarca: TextInputEditText, editModelo: TextInputEditText, editColeccion: TextInputEditText)
 }
