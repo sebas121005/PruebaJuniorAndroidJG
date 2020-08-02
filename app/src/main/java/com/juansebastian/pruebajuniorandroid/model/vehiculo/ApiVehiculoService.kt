@@ -1,5 +1,6 @@
 package com.juansebastian.pruebajuniorandroid.model.vehiculo
 
+
 import retrofit2.Call
 import retrofit2.http.GET
 

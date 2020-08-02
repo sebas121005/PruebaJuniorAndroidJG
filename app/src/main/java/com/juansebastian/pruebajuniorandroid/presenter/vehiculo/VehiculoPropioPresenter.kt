@@ -89,12 +89,13 @@ class VehiculoPropioPresenter(val context: Context, val activity: FragmentActivi
         return vehiculoInterface.getArrayItems(itemsAgregar)
     }
 
-   fun mostrarDetalle(listView: ListView, adapterVehiculo: AdapterVehiculo) {
+   override fun mostrarDetalle(listView: ListView, adapterVehiculo: AdapterVehiculo) {
        val preferencias: SharedPreferences = context.getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE)
        listView.setOnItemClickListener(AdapterView.OnItemClickListener { adapterView, view, i, l ->
            val vehiculo: Vehiculo = adapterVehiculo.getItem(i)
 
            val editor: SharedPreferences.Editor = preferencias.edit()
+           editor.putString("tipo_vehiculo", "propio")
            editor.putString("marca_propio", vehiculo.getMarca())
            editor.putString("modelo_propio", vehiculo.getModelo())
            editor.putString("favorito_propio", vehiculo.getFavorito().toString())

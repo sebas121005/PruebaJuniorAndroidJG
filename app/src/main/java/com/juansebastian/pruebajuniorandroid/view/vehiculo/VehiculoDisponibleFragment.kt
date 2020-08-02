@@ -40,7 +40,7 @@ class VehiculoDisponibleFragment : Fragment(), VehiculoDisponibleFragmentInterfa
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_vehiculo_disponible, container, false)
         val listaVehiculos = view.findViewById(R.id.lista_vehiculos_disponibles) as ListView
-        vehiculoDisponiblePresenter = VehiculoDisponiblePresenter(requireContext())
+        vehiculoDisponiblePresenter = VehiculoDisponiblePresenter(requireContext(), listaVehiculos, requireActivity())
 
         mostrarVehiculos(listaVehiculos)
 
@@ -68,6 +68,6 @@ class VehiculoDisponibleFragment : Fragment(), VehiculoDisponibleFragmentInterfa
     }
 
     override fun mostrarVehiculos(listView: ListView) {
-        vehiculoDisponiblePresenter!!.mostrarVehiculos(listView)
+        vehiculoDisponiblePresenter!!.mostrarVehiculos()
     }
 }

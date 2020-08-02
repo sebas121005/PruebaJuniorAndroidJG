@@ -10,6 +10,7 @@ import android.widget.ListView
 import android.widget.TextView
 import com.juansebastian.pruebajuniorandroid.R
 import com.juansebastian.pruebajuniorandroid.presenter.vehiculo.VehiculoDisponibleInterface
+import com.squareup.picasso.Picasso
 import java.util.ArrayList
 
 class AdapterVehiculoDisponible(private val context: Context, private val items: ArrayList<Vehiculo>?): BaseAdapter(),
@@ -24,10 +25,12 @@ class AdapterVehiculoDisponible(private val context: Context, private val items:
         val marca = convertView.findViewById<View>(R.id.marca_vehiculo) as TextView
         val modelo = convertView.findViewById<View>(R.id.modelo_vehiculo) as TextView
         val imagen = convertView.findViewById<View>(R.id.lista_imagen_vehiculo) as ImageView
+        val favorito = convertView.findViewById<View>(R.id.imagen_favorito) as ImageView
 
         marca.text = vehiculoInterface.getMarca()
         modelo.text = vehiculoInterface.getModelo()
-        imagen.setImageBitmap(vehiculoInterface.getImagen())
+        Picasso.get().load(vehiculoInterface.getImagen()).into(imagen)
+        favorito.setImageDrawable(vehiculoInterface.getFavorito())
 
         return convertView
     }
@@ -48,7 +51,7 @@ class AdapterVehiculoDisponible(private val context: Context, private val items:
         TODO("Not yet implemented")
     }
 
-    override fun mostrarVehiculos(listView: ListView) {
+    override fun mostrarVehiculos() {
         TODO("Not yet implemented")
     }
 

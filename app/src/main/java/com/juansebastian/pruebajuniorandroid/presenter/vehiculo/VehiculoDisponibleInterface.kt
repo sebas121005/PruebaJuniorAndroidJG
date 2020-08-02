@@ -7,5 +7,5 @@ import java.util.ArrayList
 interface VehiculoDisponibleInterface {
     fun getArrayItems(itemsAgregar: ArrayList<Vehiculo>?): ArrayList<Vehiculo>?
 
-    fun mostrarVehiculos(listView: ListView)
+    fun mostrarVehiculos()
 }

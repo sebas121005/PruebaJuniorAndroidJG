@@ -2,24 +2,48 @@ package com.juansebastian.pruebajuniorandroid.model.vehiculo
 
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
 import com.juansebastian.pruebajuniorandroid.presenter.vehiculo.VehiculoDisponibleInterface
 import com.juansebastian.pruebajuniorandroid.presenter.vehiculo.VehiculoPropioInterface
 
 
 class Vehiculo: VehiculoInterface {
+    @SerializedName("brand")
     private var marca: String? = null
+
+    @SerializedName("model")
     private var modelo: String? = null
+
+    @SerializedName("delet_request")
     private var solictudEliminacion: String? = null
+
+    @SerializedName("state")
     private var estado: String? = null
+
     private var favorito: Drawable? = null
-    private var imagen: Bitmap? = null
+
+    @SerializedName("image")
+    private var imagen: String? = null
+
+    @SerializedName("location")
     private var ubicacion: String? = null
+
+    @SerializedName("collection_name")
     private var coleccion: String? = null
+
+    @SerializedName("combustion_type")
     private var tipoCombustion: String? = null
+
     private var vehiculoPropioPresenterInterface: VehiculoPropioInterface? = null
     private var vehiculoDisponiblePresenterInterface: VehiculoDisponibleInterface? = null
 
-    constructor(marca: String, modelo: String, imagen: Bitmap?, favorito: Drawable?, solicitud: String?,
+    @SerializedName("vehicles")
+    private var vehiculos: Any? = null
+
+    private var listaVehiculos: Array<Vehiculo>? = null
+
+    constructor(marca: String, modelo: String, imagen: String?, favorito: Drawable?, solicitud: String?,
                 estado: String?, ubicacion: String?, coleccion: String?, tipoCombustion: String?) {
         this.marca = marca
         this.modelo = modelo
@@ -106,13 +130,22 @@ class Vehiculo: VehiculoInterface {
         this.tipoCombustion = tipoCombustion
     }
 
-    override fun getImagen(): Bitmap? {
+    override fun getImagen(): String? {
         return imagen
     }
 
-    override fun setImagen(imagen: Bitmap) {
+    override fun setImagen(imagen: String) {
         this.imagen = imagen
     }
+
+    fun getVehiculos(): Any? {
+        return vehiculos
+    }
+
+    fun setVehiculos(vehiculos: Any?) {
+        this.vehiculos = listaVehiculos
+    }
+
 
     override fun getArrayItems(itemsAgregar: ArrayList<Vehiculo>?): ArrayList<Vehiculo>? {
         return (itemsAgregar)

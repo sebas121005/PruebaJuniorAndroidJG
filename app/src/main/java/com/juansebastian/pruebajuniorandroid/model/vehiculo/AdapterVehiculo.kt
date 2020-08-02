@@ -30,7 +30,7 @@ class AdapterVehiculo(private val context: Context, private val items: ArrayList
 
         marca.text = vehiculoInterface.getMarca()
         modelo.text = vehiculoInterface.getModelo()
-        imagen.setImageBitmap(vehiculoInterface.getImagen())
+        //imagen.setImageBitmap(vehiculoInterface.getImagen())
         favorito.setImageDrawable(vehiculoInterface.getFavorito())
 
         return convertView
@@ -54,6 +54,10 @@ class AdapterVehiculo(private val context: Context, private val items: ArrayList
     }
 
     override fun mostrarVehiculos(listView: ListView, agregarVehiculo: FloatingActionButton) {
+        TODO("Not yet implemented")
+    }
+
+    override fun mostrarDetalle(listView: ListView, adapterVehiculo: AdapterVehiculo) {
         TODO("Not yet implemented")
     }
 }

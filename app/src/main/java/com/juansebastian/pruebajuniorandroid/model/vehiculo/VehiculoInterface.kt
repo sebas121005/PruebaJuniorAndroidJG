@@ -38,9 +38,9 @@ interface VehiculoInterface {
 
     fun setCombustion(combustion: String)
 
-    fun getImagen(): Bitmap?
+    fun getImagen(): String?
 
-    fun setImagen(imagen: Bitmap)
+    fun setImagen(imagen: String)
 
     fun getArrayItems(itemsAgregar: ArrayList<Vehiculo>?): ArrayList<Vehiculo>?
 }
