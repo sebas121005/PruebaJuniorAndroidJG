@@ -15,7 +15,8 @@
         android:id="@+id/nav_perfil"
         android:name="com.juansebastian.pruebajuniorandroid.view.perfil.PerfilFragment"
         android:label="@string/perfil"
-        tools:layout="@layout/fragment_perfil" />
+        tools:layout="@layout/fragment_perfil"
+        />
 
     <fragment
         android:id="@+id/nav_vehiculo_propio"

@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.ListView
+import android.widget.Toast
 import com.google.gson.Gson
 import com.google.gson.internal.LinkedTreeMap
 import com.juansebastian.pruebajuniorandroid.R
@@ -37,7 +38,7 @@ class VehiculoDisponiblePresenter(var context: Context, val listView: ListView, 
     }
 
     override fun onFailure(call: Call<Vehiculo>?, t: Throwable?) {
-        Log.e("FAILED", t!!.message)
+        Toast.makeText(context, "Falla de conexión", Toast.LENGTH_SHORT).show()
     }
 
     override fun onResponse(call: Call<Vehiculo>?, response: Response<Vehiculo>?) {
@@ -48,7 +49,7 @@ class VehiculoDisponiblePresenter(var context: Context, val listView: ListView, 
 
             val items = ArrayList<Vehiculo>()
             for (i in 0.. listaVehiculos.size) {
-                if (i != 6) {
+                if (i != listaVehiculos.size) {
                     val dataVehiculos: Any = listaVehiculos.get(i)
                     val dataVehiculoLinked: LinkedTreeMap<Any, Any> = dataVehiculos as LinkedTreeMap<Any, Any>
 
@@ -62,18 +63,20 @@ class VehiculoDisponiblePresenter(var context: Context, val listView: ListView, 
                     val coleccion = dataVehiculoLinked.get("collection_name").toString()
                     val combustion = dataVehiculoLinked.get("combustion_type").toString()
 
+                    val dataUbicacion: LinkedTreeMap<Any, Any> = ubicacion as LinkedTreeMap<Any, Any>
+                    val coordenadas: String = "${dataUbicacion.get("latitude").toString()},${dataUbicacion.get("longitude").toString()}"
+
                     if (favorito.equals("true")) {
                         items.add(Vehiculo(marca, modelo, imagen,
                                 context.getDrawable(R.drawable.estrella), eliminacion, estado,
-                                "", coleccion, combustion))
+                                coordenadas, coleccion, combustion))
                     } else {
                         items.add(Vehiculo(marca, modelo, imagen,
                                 null, eliminacion, estado,
-                                "", coleccion, combustion))
+                                coordenadas, coleccion, combustion))
                     }
 
-                    val dataUbicacion: LinkedTreeMap<Any, Any> = ubicacion as LinkedTreeMap<Any, Any>
-                    Log.e("ADDRESS", dataUbicacion.get("address").toString())
+
 
                 } else {
                     break
@@ -86,7 +89,7 @@ class VehiculoDisponiblePresenter(var context: Context, val listView: ListView, 
         }
     }
 
-    fun mostrarDetalle(listView: ListView, adapterVehiculo: AdapterVehiculoDisponible) {
+    override fun mostrarDetalle(listView: ListView, adapterVehiculo: AdapterVehiculoDisponible) {
         val preferencias: SharedPreferences = context.getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE)
         listView.setOnItemClickListener(AdapterView.OnItemClickListener { adapterView, view, i, l ->
             val vehiculo: Vehiculo = adapterVehiculo.getItem(i)

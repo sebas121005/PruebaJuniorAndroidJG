@@ -55,4 +55,8 @@ class AdapterVehiculoDisponible(private val context: Context, private val items:
         TODO("Not yet implemented")
     }
 
+    override fun mostrarDetalle(listView: ListView, adapterVehiculo: AdapterVehiculoDisponible) {
+        TODO("Not yet implemented")
+    }
+
 }

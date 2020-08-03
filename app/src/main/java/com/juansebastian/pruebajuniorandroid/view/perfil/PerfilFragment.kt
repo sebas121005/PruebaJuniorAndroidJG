@@ -5,7 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.TextView
 import com.juansebastian.pruebajuniorandroid.R
+import com.juansebastian.pruebajuniorandroid.presenter.perfil.PerfilPresenter
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,10 +21,12 @@ private const val ARG_PARAM2 = "param2"
  * Use the [PerfilFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class PerfilFragment : Fragment() {
+class PerfilFragment : Fragment(), PerfilFragmentInterface {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    private var perfilPresenter: PerfilPresenter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +39,18 @@ class PerfilFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_perfil, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_perfil, container, false)
+        val cc: TextView = view.findViewById(R.id.cc_perfil)
+        val nombre: TextView = view.findViewById(R.id.nombre_perfil)
+        val contrasena: TextView = view.findViewById(R.id.contrasena_perfil)
+        val imagen: ImageView = view.findViewById(R.id.perfil_imagen)
+        val ubicacion: TextView = view.findViewById(R.id.ubicacion_perfil)
+        val tomarUbicacionPerfil: ImageButton = view.findViewById(R.id.tomar_ubicacion_perfil)
+        perfilPresenter = PerfilPresenter(context!!, requireActivity())
+
+        mostrarDetalle(cc, nombre, contrasena, imagen, ubicacion, tomarUbicacionPerfil)
+
+        return view
     }
 
     companion object {
@@ -54,5 +71,10 @@ class PerfilFragment : Fragment() {
                         putString(ARG_PARAM2, param2)
                     }
                 }
+    }
+
+    override fun mostrarDetalle(cc: TextView, nombre: TextView, contrasena: TextView, imagenPerfil: ImageView,
+                                ubicacion: TextView, tomarUbicacionPerfil: ImageButton) {
+        perfilPresenter!!.mostrarDetalle(cc, nombre, contrasena, imagenPerfil, ubicacion, tomarUbicacionPerfil)
     }
 }

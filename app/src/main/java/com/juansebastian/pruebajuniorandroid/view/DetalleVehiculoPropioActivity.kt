@@ -23,7 +23,7 @@ class DetalleVehiculoPropioActivity : AppCompatActivity(), DetalleVehiculoPropio
         val ubicacion: TextView = findViewById(R.id.ubicacion_propio_detalle)
         val eliminacion: TextView = findViewById(R.id.eliminacion_propio_detalle)
         val imagenVehiculo: ImageView = findViewById(R.id.imagen_vehiculo_propio)
-        vehiculoDetallePropioPresenter = VehiculoDetallePropioPresenter(applicationContext)
+        vehiculoDetallePropioPresenter = VehiculoDetallePropioPresenter(applicationContext, this)
 
         mostrarDetalleVehiculo(marca, modelo, favorito, estado, coleccion, combustion, ubicacion, eliminacion, imagenVehiculo)
 

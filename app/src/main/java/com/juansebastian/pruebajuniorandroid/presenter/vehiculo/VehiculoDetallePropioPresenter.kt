@@ -1,12 +1,17 @@
 package com.juansebastian.pruebajuniorandroid.presenter.vehiculo
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
+import android.text.method.LinkMovementMethod
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
 
-class VehiculoDetallePropioPresenter(val context: Context): VehiculoDetallePropioInterface {
+class VehiculoDetallePropioPresenter(val context: Context, val activity: Activity): VehiculoDetallePropioInterface {
 
 
 
@@ -27,7 +32,7 @@ class VehiculoDetallePropioPresenter(val context: Context): VehiculoDetallePropi
                 favorito.setText("No")
             }
 
-            if (preferencias.getString("eliminacion_disponible", "").equals("Si")) {
+            if (preferencias.getString("eliminacion_disponible", "").equals("true")) {
                 eliminacion.setText("Su vehículo se encuentra en proceso de eliminación")
             } else {
                 eliminacion.setText("")
@@ -40,6 +45,18 @@ class VehiculoDetallePropioPresenter(val context: Context): VehiculoDetallePropi
             combustion.setText(preferencias.getString("combustion_disponible", ""))
             ubicacion.setText(preferencias.getString("ubicacion_disponible", ""))
             Picasso.get().load(preferencias.getString("imagen_disponible", "")).into(imagenVehiculo)
+
+            ubicacion.movementMethod = LinkMovementMethod.getInstance()
+
+            ubicacion.setOnClickListener(View.OnClickListener {
+                val gmmIntentUri = Uri.parse("google.navigation:q=${preferencias.getString("ubicacion_disponible", "")}")
+                val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+                mapIntent.setPackage("com.google.android.apps.maps")
+                mapIntent.resolveActivity(context.packageManager)?.let {
+                    activity.startActivity(mapIntent)
+                }
+            })
+
 
         }
         /**
@@ -64,7 +81,16 @@ class VehiculoDetallePropioPresenter(val context: Context): VehiculoDetallePropi
             coleccion.setText(preferencias.getString("coleccion_propio", ""))
             combustion.setText(preferencias.getString("combustion_propio", ""))
             ubicacion.setText(preferencias.getString("ubicacion_propio", ""))
+            Picasso.get().load(preferencias.getString("imagen_propio", "")).into(imagenVehiculo)
 
+            ubicacion.setOnClickListener(View.OnClickListener {
+                val gmmIntentUri = Uri.parse("google.navigation:q=${preferencias.getString("ubicacion_propio", "")}")
+                val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+                mapIntent.setPackage("com.google.android.apps.maps")
+                mapIntent.resolveActivity(context.packageManager)?.let {
+                    activity.startActivity(mapIntent)
+                }
+            })
         }
 
 

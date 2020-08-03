@@ -46,7 +46,12 @@ class AgregarVehiculoActivity : AppCompatActivity(), AgregarVehiculoActivityInte
             finish()
         }
         seleccionaImagen.setOnClickListener { tomarImagen(REQUEST_IMAGE_CAPTURE) }
-        tomarUbicacion.setOnClickListener { val intent: Intent = Intent(this, MapsActivity::class.java)
+        tomarUbicacion.setOnClickListener {
+            val editor: SharedPreferences.Editor = preferencias!!.edit()
+            editor.putString("determina_ubicacion", "0")
+            editor.commit()
+
+            val intent: Intent = Intent(this, MapsActivity::class.java)
                                             startActivity(intent)}
 
     }

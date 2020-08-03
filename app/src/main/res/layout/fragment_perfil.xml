@@ -29,7 +29,7 @@
             android:layout_below="@id/perfil_imagen"
             android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
-            android:text="CC"
+            android:text="@string/cc"
             android:textSize="18sp"/>
 
         <TextView
@@ -40,7 +40,6 @@
             android:layout_marginStart="30dp"
             android:layout_below="@id/perfil_imagen"
             android:layout_marginTop="20dp"
-            android:text="CC"
             android:textSize="18sp"
             android:textStyle="bold"/>
 
@@ -51,7 +50,7 @@
             android:layout_below="@id/txt_cc_perfil"
             android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
-            android:text="Nombre"
+            android:text="@string/nombre"
             android:textSize="18sp"/>
 
         <TextView
@@ -62,7 +61,6 @@
             android:layout_marginStart="30dp"
             android:layout_below="@id/cc_perfil"
             android:layout_marginTop="20dp"
-            android:text="Juan"
             android:textSize="18sp"
             android:textStyle="bold"/>
 
@@ -73,7 +71,7 @@
             android:layout_below="@id/txt_nombre_perfil"
             android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
-            android:text="Contraseña"
+            android:text="@string/contrasena"
             android:textSize="18sp"/>
 
         <TextView
@@ -84,9 +82,39 @@
             android:layout_marginStart="30dp"
             android:layout_below="@id/nombre_perfil"
             android:layout_marginTop="20dp"
-            android:text="1234"
             android:textSize="18sp"
             android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/txt_ubicacion_perfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_contrasena_perfil"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:text="@string/ubicacion"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/ubicacion_perfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/txt_contrasena_perfil"
+            android:layout_marginStart="30dp"
+            android:layout_below="@id/contrasena_perfil"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <ImageButton
+            android:id="@+id/tomar_ubicacion_perfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ubicacion_perfil"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@id/txt_ubicacion_perfil"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/gps"/>
 
 
     </RelativeLayout>

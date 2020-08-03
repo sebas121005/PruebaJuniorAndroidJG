@@ -16,17 +16,25 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.fragment.app.FragmentActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.gson.internal.LinkedTreeMap
 import com.juansebastian.pruebajuniorandroid.R
 import com.juansebastian.pruebajuniorandroid.model.vehiculo.AdapterVehiculo
+import com.juansebastian.pruebajuniorandroid.model.vehiculo.ApiVehiculoAdapterService
 import com.juansebastian.pruebajuniorandroid.model.vehiculo.Vehiculo
 import com.juansebastian.pruebajuniorandroid.model.vehiculo.VehiculoInterface
 import com.juansebastian.pruebajuniorandroid.view.DetalleVehiculoPropioActivity
 import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.ArrayList
 
-class VehiculoPropioPresenter(val context: Context, val activity: FragmentActivity): VehiculoPropioInterface {
+class VehiculoPropioPresenter(val context: Context, val activity: FragmentActivity): VehiculoPropioInterface,
+        Callback<Vehiculo> {
+
     private val vehiculoInterface: VehiculoInterface = Vehiculo(this)
     private var adapterVehiculo: AdapterVehiculo? = null
+    val preferencias: SharedPreferences = context.getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE)
 
 
     override fun mostrarVehiculos(listView: ListView, agregarVehiculo: FloatingActionButton) {
@@ -48,25 +56,29 @@ class VehiculoPropioPresenter(val context: Context, val activity: FragmentActivi
                 null
         )
 
+
         var dataJson: JSONObject? = null
 
         val items = ArrayList<Vehiculo>()
 
         if (cursor!= null) {
+            consultarImagen()
             with(cursor) {
                 while (moveToNext()) {
                     dataJson = JSONObject(cursor.getString(2))
 
                         if (dataJson!!.getString("favorito").equals("Si")) {
                             items.add(Vehiculo(dataJson!!.getString("marca"), dataJson!!.getString("modelo"),
-                                    null, context.getDrawable(R.drawable.estrella), dataJson!!.getString("eliminacion"),
-                                    dataJson!!.getString("estado"), dataJson!!.getString("ubicacion"),
-                                    dataJson!!.getString("coleccion"), dataJson!!.getString("combustion")))
+                                    preferencias.getString("imagen_propio", ""), context.getDrawable(R.drawable.estrella),
+                                    dataJson!!.getString("eliminacion"), dataJson!!.getString("estado"),
+                                    dataJson!!.getString("ubicacion"), dataJson!!.getString("coleccion"),
+                                    dataJson!!.getString("combustion")))
                         } else {
                             items.add(Vehiculo(dataJson!!.getString("marca"), dataJson!!.getString("modelo"),
-                                    null, null, dataJson!!.getString("eliminacion"),
-                                    dataJson!!.getString("estado"), dataJson!!.getString("ubicacion"),
-                                    dataJson!!.getString("coleccion"), dataJson!!.getString("combustion")))
+                                    preferencias.getString("imagen_propio", ""), null,
+                                    dataJson!!.getString("eliminacion"), dataJson!!.getString("estado"),
+                                    dataJson!!.getString("ubicacion"), dataJson!!.getString("coleccion"),
+                                    dataJson!!.getString("combustion")))
                         }
 
                     if (cursor.getString(0).equals("3")) {
@@ -112,6 +124,38 @@ class VehiculoPropioPresenter(val context: Context, val activity: FragmentActivi
        })
    }
 
+    fun consultarImagen() {
+        val call: Call<Vehiculo> = ApiVehiculoAdapterService.getApiService()!!.getVehiculos()
+        call.enqueue(this)
+    }
+
+    override fun onFailure(call: Call<Vehiculo>?, t: Throwable?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onResponse(call: Call<Vehiculo>?, response: Response<Vehiculo>?) {
+        if (response!!.isSuccessful) run {
+            val vehiculo: Vehiculo = response.body()
+
+            val listaVehiculos: ArrayList<Vehiculo> = vehiculo.getVehiculos() as ArrayList<Vehiculo>
+
+            val items = ArrayList<Vehiculo>()
+            for (i in 0.. listaVehiculos.size) {
+                if (i == listaVehiculos.size) {
+                    break
+                }
+                val dataVehiculos: Any = listaVehiculos.get(i)
+                val dataVehiculoLinked: LinkedTreeMap<Any, Any> = dataVehiculos as LinkedTreeMap<Any, Any>
+                val imagen = dataVehiculoLinked.get("image").toString()
+
+
+                val editor: SharedPreferences.Editor = preferencias.edit()
+                editor.putString("imagen_propio", imagen)
+                editor.commit()
+
+            }
+        }
+    }
 
 
 }

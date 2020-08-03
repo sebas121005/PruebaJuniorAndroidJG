@@ -12,6 +12,7 @@ import android.widget.TextView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.juansebastian.pruebajuniorandroid.R
 import com.juansebastian.pruebajuniorandroid.presenter.vehiculo.VehiculoPropioInterface
+import com.squareup.picasso.Picasso
 import java.util.ArrayList
 
 class AdapterVehiculo(private val context: Context, private val items: ArrayList<Vehiculo>?): BaseAdapter(),
@@ -30,8 +31,8 @@ class AdapterVehiculo(private val context: Context, private val items: ArrayList
 
         marca.text = vehiculoInterface.getMarca()
         modelo.text = vehiculoInterface.getModelo()
-        //imagen.setImageBitmap(vehiculoInterface.getImagen())
         favorito.setImageDrawable(vehiculoInterface.getFavorito())
+        Picasso.get().load(vehiculoInterface.getImagen()).into(imagen)
 
         return convertView
 

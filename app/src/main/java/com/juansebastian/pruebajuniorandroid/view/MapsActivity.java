@@ -60,9 +60,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
         final LatLng posicion = new LatLng(4.810505, -75.7112924);
-        MarkerOptions markerOptions = new MarkerOptions().position(posicion).draggable(true);
+        final MarkerOptions markerOptions = new MarkerOptions().position(posicion).draggable(true);
         mMap.addMarker(markerOptions);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(markerOptions.getPosition()));
         mMap.setOnMarkerDragListener(this);
@@ -75,11 +74,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.setMyLocationEnabled(true);
         }
 
+        final String ubicacion = markerOptions.getPosition().latitude + "," + markerOptions.getPosition().longitude;
+        
         guardaUbicacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("ubicacion", posicion.toString());
+
+                if (preferences.getString("determina_ubicacion", "").equals("1")) {
+                    editor.putString("ubicacion_perfil", ubicacion);
+
+                } else {
+                    editor.putString("ubicacion", ubicacion);
+                }
+
                 editor.commit();
                 onBackPressed();
             }
@@ -109,7 +117,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View view) {
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("ubicacion", posicion);
+
+                if (preferences.getString("determina_ubicacion", "").equals("1")) {
+                    editor.putString("ubicacion_perfil", posicion);
+
+                } else {
+                    editor.putString("ubicacion", posicion);
+                }
+
                 editor.commit();
                 onBackPressed();
             }
