@@ -5,6 +5,6 @@ import android.widget.ImageView
 import android.widget.TextView
 
 interface PerfilFragmentInterface {
-    fun mostrarDetalle(cc: TextView, nombre: TextView, contrasena: TextView, imagenPerfil: ImageView,
+    fun mostrarDetalle(nombre: TextView, contrasena: TextView, imagenPerfil: ImageView,
                         ubicacion: TextView, tomarUbicacion: ImageButton)
 }

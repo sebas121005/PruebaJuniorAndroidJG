@@ -6,10 +6,6 @@ interface PerfilInterface {
 
     fun setNombre(nombre: String?)
 
-    fun getCc(): String?
-
-    fun setCc(cc: String?)
-
     fun getImagen(): String?
 
     fun setImagen(imagen: String?)

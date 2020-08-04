@@ -13,4 +13,6 @@ interface VehiculoPropioInterface {
     fun mostrarVehiculos(listView: ListView, agregarVehiculo: FloatingActionButton)
 
     fun mostrarDetalle(listView: ListView, adapterVehiculo: AdapterVehiculo)
+
+    fun consultarImagen()
 }

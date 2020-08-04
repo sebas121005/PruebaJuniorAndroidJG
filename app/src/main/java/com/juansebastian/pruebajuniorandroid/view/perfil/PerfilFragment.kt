@@ -40,7 +40,6 @@ class PerfilFragment : Fragment(), PerfilFragmentInterface {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_perfil, container, false)
-        val cc: TextView = view.findViewById(R.id.cc_perfil)
         val nombre: TextView = view.findViewById(R.id.nombre_perfil)
         val contrasena: TextView = view.findViewById(R.id.contrasena_perfil)
         val imagen: ImageView = view.findViewById(R.id.perfil_imagen)
@@ -48,7 +47,7 @@ class PerfilFragment : Fragment(), PerfilFragmentInterface {
         val tomarUbicacionPerfil: ImageButton = view.findViewById(R.id.tomar_ubicacion_perfil)
         perfilPresenter = PerfilPresenter(context!!, requireActivity())
 
-        mostrarDetalle(cc, nombre, contrasena, imagen, ubicacion, tomarUbicacionPerfil)
+        mostrarDetalle(nombre, contrasena, imagen, ubicacion, tomarUbicacionPerfil)
 
         return view
     }
@@ -73,8 +72,8 @@ class PerfilFragment : Fragment(), PerfilFragmentInterface {
                 }
     }
 
-    override fun mostrarDetalle(cc: TextView, nombre: TextView, contrasena: TextView, imagenPerfil: ImageView,
+    override fun mostrarDetalle(nombre: TextView, contrasena: TextView, imagenPerfil: ImageView,
                                 ubicacion: TextView, tomarUbicacionPerfil: ImageButton) {
-        perfilPresenter!!.mostrarDetalle(cc, nombre, contrasena, imagenPerfil, ubicacion, tomarUbicacionPerfil)
+        perfilPresenter!!.mostrarDetalle(nombre, contrasena, imagenPerfil, ubicacion, tomarUbicacionPerfil)
     }
 }

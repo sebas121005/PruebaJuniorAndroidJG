@@ -9,6 +9,7 @@ class DbVehiculo (context: Context) : SQLiteOpenHelper(context, "DB_VEHICULO", n
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(SQL_CREATE_ENTRIES)
+        db.execSQL(SQL_CREATE_ENTRIES_PERFIL)
     }
 
     override fun onDowngrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -25,11 +26,24 @@ class DbVehiculo (context: Context) : SQLiteOpenHelper(context, "DB_VEHICULO", n
         const val COLUMN_NAME_DATA = "DATA"
     }
 
+    object Perfil : BaseColumns {
+        const val TABLE_NAME_PERFIL = "PERFIL"
+        const val COLUMN_NAME_USUARIO = "USUARIO"
+        const val COLUMN_NAME_DATA = "DATA"
+    }
+
     companion object {
         private const val SQL_CREATE_ENTRIES =
                 "CREATE TABLE ${FeedEntry.TABLE_NAME} (" +
                         "${FeedEntry.COLUMN_NAME_USUARIO} VARCHAR(30)," +
                         "${FeedEntry.COLUMN_NAME_DATA} TEXT)"
+
+        private const val SQL_CREATE_ENTRIES_PERFIL =
+                "CREATE TABLE ${Perfil.TABLE_NAME_PERFIL} (" +
+                        "${Perfil.COLUMN_NAME_USUARIO} VARCHAR(30)," +
+                        "${Perfil.COLUMN_NAME_DATA} TEXT)"
     }
+
+
 
 }

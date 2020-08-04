@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -24,7 +25,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.juansebastian.pruebajuniorandroid.MainActivity;
 import com.juansebastian.pruebajuniorandroid.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.prefs.Preferences;
 
@@ -82,14 +87,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 SharedPreferences.Editor editor = preferences.edit();
 
                 if (preferences.getString("determina_ubicacion", "").equals("1")) {
-                    editor.putString("ubicacion_perfil", ubicacion);
+                    JSONObject ubicacionJson = new JSONObject();
+                    try {
+                        ubicacionJson.put("usuario", preferences.getString("usuario", ""));
+                        ubicacionJson.put("contrasena", preferences.getString("contrasena", ""));
+                        ubicacionJson.put("ubicacion", ubicacion);
+                        Toast.makeText(getApplicationContext(), "Ubicación almacenada correctamente", Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+
+                    }
+                    editor.putString("ubicacion_perfil", ubicacionJson.toString());
 
                 } else {
                     editor.putString("ubicacion", ubicacion);
+
                 }
 
                 editor.commit();
                 onBackPressed();
+
             }
         });
 
@@ -119,11 +135,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 SharedPreferences.Editor editor = preferences.edit();
 
                 if (preferences.getString("determina_ubicacion", "").equals("1")) {
-                    editor.putString("ubicacion_perfil", posicion);
+                    JSONObject ubicacionJson = new JSONObject();
+                    try {
+                        ubicacionJson.put("usuario", preferences.getString("usuario", ""));
+                        ubicacionJson.put("contrasena", preferences.getString("contrasena", ""));
+                        ubicacionJson.put("ubicacion", posicion);
+                        Toast.makeText(getApplicationContext(), "Ubicación almacenada correctamente", Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+
+                    }
+                    editor.putString("ubicacion_perfil", ubicacionJson.toString());
 
                 } else {
                     editor.putString("ubicacion", posicion);
+
                 }
+
 
                 editor.commit();
                 onBackPressed();

@@ -59,7 +59,7 @@ class VehiculoAgregaPresenter(var context: Context, val activity: Activity): Veh
 
 
        val values = ContentValues().apply {
-            put(DbVehiculo.FeedEntry.COLUMN_NAME_USUARIO, "123")
+            put(DbVehiculo.FeedEntry.COLUMN_NAME_USUARIO, preferencias.getString("usuario", ""))
             put(DbVehiculo.FeedEntry.COLUMN_NAME_DATA, "$infoJson")
         }
 

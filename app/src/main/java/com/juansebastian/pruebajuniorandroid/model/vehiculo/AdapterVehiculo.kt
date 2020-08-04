@@ -61,4 +61,8 @@ class AdapterVehiculo(private val context: Context, private val items: ArrayList
     override fun mostrarDetalle(listView: ListView, adapterVehiculo: AdapterVehiculo) {
         TODO("Not yet implemented")
     }
+
+    override fun consultarImagen() {
+        TODO("Not yet implemented")
+    }
 }

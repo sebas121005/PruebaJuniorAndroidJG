@@ -6,6 +6,6 @@ import android.widget.TextView
 
 interface PerfilPresenterInterface {
 
-    fun mostrarDetalle(cc: TextView, nombre: TextView, contrasena: TextView, imagenPerfil: ImageView,
+    fun mostrarDetalle(nombre: TextView, contrasena: TextView, imagenPerfil: ImageView,
                        ubicacion: TextView, tomarUbicacion: ImageButton)
 }

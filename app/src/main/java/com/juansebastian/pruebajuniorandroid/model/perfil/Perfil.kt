@@ -4,16 +4,14 @@ import com.juansebastian.pruebajuniorandroid.presenter.perfil.PerfilPresenterInt
 
 class Perfil: PerfilInterface {
     private var nombre: String? = null
-    private var cc: String? = null
     private var contrasena: String? = null
     private var imagen: String? = null
     private var ubicacion: String? = null
 
     private var perfilPresenterInterface: PerfilPresenterInterface? = null
 
-    constructor(nombre: String?, cc: String?, imagen: String?, ubicacion: String?, contrasena: String) {
+    constructor(nombre: String?, imagen: String?, ubicacion: String?, contrasena: String) {
         this.nombre = nombre
-        this.cc = cc
         this.imagen = imagen
         this.ubicacion = ubicacion
         this.contrasena = contrasena
@@ -29,14 +27,6 @@ class Perfil: PerfilInterface {
 
     override fun setNombre(nombre: String?) {
         this.nombre = nombre
-    }
-
-    override fun getCc(): String? {
-        return this.cc
-    }
-
-    override fun setCc(cc: String?) {
-        this.cc = cc
     }
 
     override fun getImagen(): String? {

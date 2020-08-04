@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.perfil.AgregaPerfilActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txt_agregar_perfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:text="@string/agregar_perfil"
+                android:textSize="25sp"/>
+
+            <View
+                android:id="@+id/view_agregar"
+                android:layout_width="300dp"
+                android:layout_height="1dp"
+                android:background="@color/cardview_dark_background"
+                android:layout_below="@id/txt_agregar_perfil"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"/>
+
+
+            <TextView
+                android:id="@+id/txt_nombre_perfil_agrega"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/view_agregar"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:text="@string/nombre"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/nombre_perfil_agrega"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/txt_nombre_perfil_agrega"
+                android:layout_marginStart="30dp"
+                android:layout_below="@id/view_agregar"
+                android:layout_marginTop="20dp"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/txt_contrasena_perfil_agrega"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_nombre_perfil_agrega"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:text="@string/contrasena"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/contrasena_perfil_agrega"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/txt_contrasena_perfil_agrega"
+                android:layout_marginStart="30dp"
+                android:layout_below="@id/nombre_perfil_agrega"
+                android:layout_marginTop="20dp"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/txt_ubicacion_perfil_agrega"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_contrasena_perfil_agrega"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:text="@string/ubicacion"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/ubicacion_perfil_agrega"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/txt_contrasena_perfil_agrega"
+                android:layout_marginStart="30dp"
+                android:layout_below="@id/contrasena_perfil_agrega"
+                android:layout_marginTop="20dp"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <ImageButton
+                android:id="@+id/tomar_ubicacion_perfila_agrega"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ubicacion_perfil_agrega"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@id/txt_ubicacion_perfil_agrega"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/gps"/>
+
+            <Button
+                android:id="@+id/guarda_perfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tomar_ubicacion_perfila_agrega"
+                android:layout_marginTop="20dp"
+                android:text="@string/guardar"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</LinearLayout>

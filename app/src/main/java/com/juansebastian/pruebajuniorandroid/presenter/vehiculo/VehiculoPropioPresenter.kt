@@ -42,7 +42,7 @@ class VehiculoPropioPresenter(val context: Context, val activity: FragmentActivi
         val db = dbVehiculo.readableDatabase
         val projection = arrayOf("rowid", DbVehiculo.FeedEntry.COLUMN_NAME_USUARIO, DbVehiculo.FeedEntry.COLUMN_NAME_DATA)
         val selection = "${DbVehiculo.FeedEntry.COLUMN_NAME_USUARIO} = ?"
-        val selectionArgs = arrayOf("123")
+        val selectionArgs = arrayOf(preferencias.getString("usuario", ""))
 
         val sortOrder = "${"rowid"} DESC"
 
@@ -124,7 +124,7 @@ class VehiculoPropioPresenter(val context: Context, val activity: FragmentActivi
        })
    }
 
-    fun consultarImagen() {
+    override fun consultarImagen() {
         val call: Call<Vehiculo> = ApiVehiculoAdapterService.getApiService()!!.getVehiculos()
         call.enqueue(this)
     }
