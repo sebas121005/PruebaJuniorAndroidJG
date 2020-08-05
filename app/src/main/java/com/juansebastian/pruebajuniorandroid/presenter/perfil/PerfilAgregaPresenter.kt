@@ -20,45 +20,63 @@ class PerfilAgregaPresenter(val context: Context, val activity: Activity): Perfi
                                 tomarUbicacion: ImageButton, guardarPerfil: Button) {
         val preferences = context.getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE)
 
-        if (!preferences.getString("agrega_perfil", "").equals("1")) {
+        val dbVehiculo = DbVehiculo(context)
+        val db = dbVehiculo.writableDatabase
 
-            nombre.setText(preferences.getString("usuario", ""))
-            contrasena.setText(preferences.getString("contrasena", ""))
+        val projection = arrayOf("rowid", DbVehiculo.Perfil.COLUMN_NAME_USUARIO, DbVehiculo.Perfil.COLUMN_NAME_PERFIL)
+        val selection = "${DbVehiculo.Perfil.COLUMN_NAME_USUARIO} = ?"
+        val selectionArgs = arrayOf(preferences.getString("usuario", ""))
 
-            val editor: SharedPreferences.Editor = preferences.edit()
+        val cursor = db.query(
+                DbVehiculo.Perfil.TABLE_NAME_PERFIL,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        )
 
-            tomarUbicacion.setOnClickListener(View.OnClickListener {
+        if (cursor != null) {
+            with(cursor) {
+                if (!moveToNext()) {
+                            nombre.setText(preferences.getString("usuario", ""))
+                            contrasena.setText(preferences.getString("contrasena", ""))
 
-                editor.putString("determina_ubicacion", "1")
-                editor.commit()
-                val intent: Intent = Intent(activity, MapsActivity::class.java)
-                activity.startActivity(intent)
-            })
+                            val editor: SharedPreferences.Editor = preferences.edit()
 
-            guardarPerfil.setOnClickListener(View.OnClickListener {
-                val dataUbicacion: JSONObject = JSONObject(preferences.getString("ubicacion_perfil", ""))
+                            tomarUbicacion.setOnClickListener(View.OnClickListener {
 
-                val dbVehiculo = DbVehiculo(context)
-                val db = dbVehiculo.writableDatabase
+                                editor.putString("determina_ubicacion", "1")
+                                editor.commit()
+                                val intent: Intent = Intent(activity, MapsActivity::class.java)
+                                activity.startActivity(intent)
+                            })
 
+                            guardarPerfil.setOnClickListener(View.OnClickListener {
+                                val dataUbicacion: JSONObject = JSONObject(preferences.getString("ubicacion_perfil", ""))
 
-                val values = ContentValues().apply {
-                    put(DbVehiculo.Perfil.COLUMN_NAME_USUARIO, preferences.getString("usuario", ""))
-                    put(DbVehiculo.Perfil.COLUMN_NAME_DATA, "$dataUbicacion")
+                                val values = ContentValues().apply {
+                                    put(DbVehiculo.Perfil.COLUMN_NAME_USUARIO, preferences.getString("usuario", ""))
+                                    put(DbVehiculo.Perfil.COLUMN_NAME_DATA, "$dataUbicacion")
+                                    put(DbVehiculo.Perfil.COLUMN_NAME_PERFIL, "1")
+                                }
+
+                                val nuevaFila = db?.insert("PERFIL", null, values)
+
+                                editor.putString("agrega_perfil", "1")
+                                editor.commit()
+
+                                val intent: Intent = Intent(activity, MainActivity::class.java)
+                                activity.startActivity(intent)
+                            })
+
+                } else {
+                    val intent: Intent = Intent(activity, MainActivity::class.java)
+                    activity.startActivity(intent)
                 }
-
-                val nuevaFila = db?.insert("PERFIL", null, values)
-
-                editor.putString("agrega_perfil", "1")
-                editor.commit()
-
-                val intent: Intent = Intent(activity, MainActivity::class.java)
-                activity.startActivity(intent)
-            })
-        } else {
-            val intent: Intent = Intent(activity, MainActivity::class.java)
-            activity.startActivity(intent)
-        }
+            }
+       }
 
 
 

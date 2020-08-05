@@ -25,7 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:hint="@string/usuario" />
+            android:hint="@string/usuario"
+            android:imeOptions="actionNext"/>
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/contrasena_login"
@@ -33,7 +34,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/usuario_login"
             android:layout_marginTop="20dp"
-            android:hint="@string/contrasena" />
+            android:hint="@string/contrasena"
+            android:imeOptions="actionDone"/>
 
         <Button
             android:id="@+id/inicio_sesion"

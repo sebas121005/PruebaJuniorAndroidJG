@@ -19,8 +19,6 @@ class UsuarioPresenter(val context: Context, val activity: Activity): UsuarioPre
             if (!preferences.getString("inicio_sesion", "").equals("1")) {
                 val editor: SharedPreferences.Editor = preferences.edit()
 
-
-
                 iniciarSesion.setOnClickListener(View.OnClickListener {
                     if (usuario.text.toString().equals("usuario1") && contrasena.text.toString().equals("1") ||
                             usuario.text.toString().equals("usuario2") && contrasena.text.toString().equals("2")) {

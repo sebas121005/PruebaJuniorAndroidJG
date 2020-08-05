@@ -180,8 +180,7 @@
                 android:layout_toEndOf="@id/txt_coleccion_detalle_propio"
                 android:layout_marginStart="10dp"
                 android:textSize="18sp"
-                android:autoLink="web"
-                android:textColorLink="@color/cardview_light_background"/>
+                android:text="@string/href"/>
 
             <TextView
                 android:id="@+id/eliminacion_propio_detalle"

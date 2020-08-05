@@ -45,4 +45,6 @@
     <string name="agregar_perfil">Agregar Perfil</string>
     <string name="guardar">Guardar</string>
     <string name="cerrar_sesion">Cerrar Sesión</string>
+    <string name="href"><u></u></string>
+    <string name="home">¡Bienvenido! Ingresa en el menú lateral y selecciona una opción</string>
 </resources>

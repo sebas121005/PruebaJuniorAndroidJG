@@ -5,11 +5,15 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
-import android.text.method.LinkMovementMethod
+import android.text.Html
+import android.text.Html.FROM_HTML_MODE_LEGACY
+import android.text.Spanned
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.juansebastian.pruebajuniorandroid.R
 import com.squareup.picasso.Picasso
+
 
 class VehiculoDetallePropioPresenter(val context: Context, val activity: Activity): VehiculoDetallePropioInterface {
 
@@ -43,10 +47,13 @@ class VehiculoDetallePropioPresenter(val context: Context, val activity: Activit
             estado.setText(preferencias.getString("estado_disponible", ""))
             coleccion.setText(preferencias.getString("combustion_disponible", ""))
             combustion.setText(preferencias.getString("combustion_disponible", ""))
-            ubicacion.setText(preferencias.getString("ubicacion_disponible", ""))
+            val textoString: String = "<p style=\"color:blue\"><u>${preferencias.getString("ubicacion_disponible", "")}</u></p>"
+            val ubicacionEstilo: Spanned = Html.fromHtml(textoString, FROM_HTML_MODE_LEGACY)
+            ubicacion.setText(ubicacionEstilo)
+
             Picasso.get().load(preferencias.getString("imagen_disponible", "")).into(imagenVehiculo)
 
-            ubicacion.movementMethod = LinkMovementMethod.getInstance()
+
 
             ubicacion.setOnClickListener(View.OnClickListener {
                 val gmmIntentUri = Uri.parse("google.navigation:q=${preferencias.getString("ubicacion_disponible", "")}")
@@ -80,8 +87,11 @@ class VehiculoDetallePropioPresenter(val context: Context, val activity: Activit
             estado.setText(preferencias.getString("estado_propio", ""))
             coleccion.setText(preferencias.getString("coleccion_propio", ""))
             combustion.setText(preferencias.getString("combustion_propio", ""))
-            ubicacion.setText(preferencias.getString("ubicacion_propio", ""))
+            val textoString: String = "<p style=\"color:blue\"><u>${preferencias.getString("ubicacion_propio", "")}</u></p>"
+            val ubicacionEstilo: Spanned = Html.fromHtml(textoString, FROM_HTML_MODE_LEGACY)
+            ubicacion.setText(ubicacionEstilo)
             Picasso.get().load(preferencias.getString("imagen_propio", "")).into(imagenVehiculo)
+
 
             ubicacion.setOnClickListener(View.OnClickListener {
                 val gmmIntentUri = Uri.parse("google.navigation:q=${preferencias.getString("ubicacion_propio", "")}")

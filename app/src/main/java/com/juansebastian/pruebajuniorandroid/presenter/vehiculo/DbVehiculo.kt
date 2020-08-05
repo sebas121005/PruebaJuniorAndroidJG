@@ -30,6 +30,7 @@ class DbVehiculo (context: Context) : SQLiteOpenHelper(context, "DB_VEHICULO", n
         const val TABLE_NAME_PERFIL = "PERFIL"
         const val COLUMN_NAME_USUARIO = "USUARIO"
         const val COLUMN_NAME_DATA = "DATA"
+        const val COLUMN_NAME_PERFIL = "PERFIL"
     }
 
     companion object {
@@ -41,7 +42,8 @@ class DbVehiculo (context: Context) : SQLiteOpenHelper(context, "DB_VEHICULO", n
         private const val SQL_CREATE_ENTRIES_PERFIL =
                 "CREATE TABLE ${Perfil.TABLE_NAME_PERFIL} (" +
                         "${Perfil.COLUMN_NAME_USUARIO} VARCHAR(30)," +
-                        "${Perfil.COLUMN_NAME_DATA} TEXT)"
+                        "${Perfil.COLUMN_NAME_DATA} TEXT," +
+                        "${Perfil.COLUMN_NAME_PERFIL} VARCHAR(5))"
     }
 
 

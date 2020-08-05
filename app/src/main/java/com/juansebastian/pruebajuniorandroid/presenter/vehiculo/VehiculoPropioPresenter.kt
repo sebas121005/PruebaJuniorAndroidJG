@@ -81,7 +81,7 @@ class VehiculoPropioPresenter(val context: Context, val activity: FragmentActivi
                                     dataJson!!.getString("combustion")))
                         }
 
-                    if (cursor.getString(0).equals("3")) {
+                    if (cursor.count == 3) {
                         agregarVehiculo.hide()
                         Toast.makeText(context, "Ha llegado al límite de sus vehículos", Toast.LENGTH_SHORT).show()
                     }

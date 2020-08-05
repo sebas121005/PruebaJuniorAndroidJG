@@ -4,6 +4,9 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
+import android.text.Html
+import android.text.Spanned
 import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -30,8 +33,6 @@ class PerfilPresenter(val context: Context, val activity: Activity): PerfilPrese
         val selection = "${DbVehiculo.Perfil.COLUMN_NAME_USUARIO} = ?"
         val selectionArgs = arrayOf(preferences.getString("usuario", ""))
 
-        val sortOrder = "${"rowid"} DESC"
-
         val cursor = db.query(
                 DbVehiculo.Perfil.TABLE_NAME_PERFIL,
                 projection,
@@ -56,7 +57,18 @@ class PerfilPresenter(val context: Context, val activity: Activity): PerfilPrese
                     contrasena.setText(perfil.getContrasena())
 
                     Picasso.get().load(perfil.getImagen()).into(imagenPerfil)
-                    ubicacion.setText(perfil.getUbicacion())
+                    val textoString = "<p style=\"color:blue\"><u>${perfil.getUbicacion()}</u></p>"
+                    val ubicacionEstilo: Spanned = Html.fromHtml(textoString, Html.FROM_HTML_MODE_LEGACY)
+                    ubicacion.setText(ubicacionEstilo)
+
+                    ubicacion.setOnClickListener(View.OnClickListener {
+                        val gmmIntentUri = Uri.parse("google.navigation:q=${perfil.getUbicacion()}")
+                        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+                        mapIntent.setPackage("com.google.android.apps.maps")
+                        mapIntent.resolveActivity(context.packageManager)?.let {
+                            activity.startActivity(mapIntent)
+                        }
+                        })
 
                 }
             }
